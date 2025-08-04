@@ -24,14 +24,14 @@ end
 
 module.lsp = {}
 do
-	for k, v in pairs(module.config) do
+	for _, v in pairs(module.config) do
 		module.lsp[#module.lsp + 1] = v.lsp
 	end
 end
 
 module.treesiter = {}
 do
-	for k, v in pairs(module.config) do
+	for k, _ in pairs(module.config) do
 		module.treesiter[#module.treesiter + 1] = k
 	end
 end
