@@ -6,6 +6,8 @@
 ![](assets/terminal.png)
 
 ## [plugins](./lua/plugins)
+[lazy.nvim](https://github.com/folke/lazy.nvim)
+
 [alpha-nvim](https://github.com/goolord/alpha-nvim)
 
 [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
