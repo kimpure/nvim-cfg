@@ -23,7 +23,5 @@ return {
 				},
 			},
 		})
-
-		vim.api.nvim_set_keymap("n", ":", ":Telescope cmdline<CR>", { noremap = true, desc = "Cmdline" })
 	end,
 }
