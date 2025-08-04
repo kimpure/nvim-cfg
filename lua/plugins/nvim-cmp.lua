@@ -11,14 +11,6 @@ return {
 
 		cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
-		vim.diagnostic.config({
-			virtual_text = true,
-			signs = true,
-			underline = true,
-			update_in_insert = true,
-			severity_sort = true,
-		})
-
 		return {
 			mapping = cmp.mapping.preset.insert({
 				["<Down>"] = cmp.mapping.select_next_item(),
