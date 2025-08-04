@@ -1,5 +1,10 @@
 ## [nvim](https://github.com/neovim/neovim) dotfile
 
+![](assets/startup.png)
+![](assets/edit.png)
+![](assets/cmdline.png)
+![](assets/terminal.png)
+
 ## [plugins](./lua/plugins)
 [alpha-nvim](https://github.com/goolord/alpha-nvim)
 
