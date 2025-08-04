@@ -1,4 +1,4 @@
-local lang = require("config.lang")
+local lang = require("defines.lang")
 
 return {
 	{
