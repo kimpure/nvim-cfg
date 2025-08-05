@@ -1,1 +1,1 @@
-require("utils.require-dir")("custom-plugins")
+require("utils.require-dir")("plugins.custom")
