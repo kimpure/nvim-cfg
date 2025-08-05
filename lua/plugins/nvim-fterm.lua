@@ -1,11 +1,11 @@
 return {
 	"numToStr/FTerm.nvim",
-	config = function()
+	init = function()
 		local fterm = require("FTerm")
 
 		fterm.setup({
 			border = "rounded",
-			cmd = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+			cmd = require("defines.shell").path,
 			dimensions = {
 				height = 0.9,
 				width = 0.9,

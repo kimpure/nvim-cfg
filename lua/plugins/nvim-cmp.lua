@@ -15,9 +15,7 @@ return {
 			mapping = cmp.mapping.preset.insert({
 				["<Down>"] = cmp.mapping.select_next_item(),
 				["<Up>"] = cmp.mapping.select_prev_item(),
-				["<Tab>"] = cmp.mapping.confirm({
-					select = true,
-				}),
+				["<Tab>"] = cmp.mapping.confirm({ select = true }),
 			}),
 			window = {
 				completion = cmp.config.window.bordered(),

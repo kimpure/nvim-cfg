@@ -3,16 +3,13 @@ local lang = require("defines.lang")
 return {
 	"stevearc/conform.nvim",
 	config = function()
-		require("conform").setup({
+		local conform = require("conform")
+		conform.setup({
 			formatters_by_ft = lang.formatters,
-			format_on_save = {
-				timeout_ms = 1000,
-				lsp_fallback = true,
-			},
 		})
 
-		vim.keymap.set("n", "<leader>cf", function()
-			require("conform").format({ async = true, lsp_fallback = true })
-		end, { desc = "Format file" })
+		vim.api.nvim_create_user_command("FormatFile", function()
+			conform.format({ async = true, lsp_fallback = true })
+		end, { bang = true })
 	end,
 }
