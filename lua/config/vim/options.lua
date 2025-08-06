@@ -25,4 +25,7 @@ vim.o.updatetime = 500
 vim.o.showmatch = false
 vim.o.swapfile = false
 vim.o.cursorline = true
-
+vim.o.shell = "C:\\windows\\system32\\windowspowershell\\v1.0\\powershell.exe"
+vim.o.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command"
+vim.o.shellquote = ""
+vim.o.shellxquote = ""

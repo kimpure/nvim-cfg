@@ -7,26 +7,16 @@ return {
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
-		config = function()
-			require("mason-lspconfig").setup({
-				ensure_installed = lang.lsp,
-				automatic_installation = true,
-			})
-		end,
+		opts = {
+			ensure_installed = lang.lsp,
+			automatic_installation = true,
+		},
 	},
-	{
+    {
 		"neovim/nvim-lspconfig",
-		config = function()
+		init = function()
 			local lspconfig = require("lspconfig")
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-			vim.diagnostic.config({
-				virtual_text = true,
-				signs = true,
-				underline = true,
-				update_in_insert = true, -- 중요: 인설트 중에도 업데이트
-				severity_sort = true,
-			})
 
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,

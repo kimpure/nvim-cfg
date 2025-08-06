@@ -15,7 +15,6 @@
 [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
 
 [conform.nvim](https://github.com/stevearc/conform.nvim)
-[FTerm.nvim](https://github.com/numToStr/FTerm.nvim)
 [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
 
 [lush.nvim](https://github.com/rktjmp/lush.nvim)

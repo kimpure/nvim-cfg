@@ -8,3 +8,6 @@ mapping("<A-Up>", ":wincmd k<CR>")
 
 mapping("<", "<gv", "v")
 mapping(">", ">gv", "v")
+
+mapping("<C-\\>", "<cmd>terminal<CR>")
+mapping("<ESC>", "<C-\\><C-n>", "t")
