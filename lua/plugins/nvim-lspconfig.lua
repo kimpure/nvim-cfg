@@ -3,7 +3,11 @@ local lang = require("defines.lang")
 return {
 	{
 		"williamboman/mason.nvim",
-		opts = {},
+		opts = {
+			ui = {
+				border = "rounded",
+			},
+		},
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
@@ -12,9 +16,9 @@ return {
 			automatic_installation = true,
 		},
 	},
-    {
+	{
 		"neovim/nvim-lspconfig",
-		init = function()
+		config = function()
 			local lspconfig = require("lspconfig")
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 

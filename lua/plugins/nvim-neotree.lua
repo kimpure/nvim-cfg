@@ -6,4 +6,7 @@ return {
 		"nvim-tree/nvim-web-devicons",
 		"MunifTanjim/nui.nvim",
 	},
+	opts = {
+		auto_clean_after_session_restore = false,
+	},
 }

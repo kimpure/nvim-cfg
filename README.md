@@ -35,3 +35,7 @@
 [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 [warp.nvim](https://github.com/kimpure/warp.nvim)
 
+TODO:
+cmp 고치기 (nvim 기본기능으로 바꿀듯?)
+warp.nvim 고치기
+
