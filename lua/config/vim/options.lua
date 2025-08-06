@@ -24,3 +24,5 @@ vim.opt.laststatus = 2
 vim.o.updatetime = 500
 vim.o.showmatch = false
 vim.o.swapfile = false
+vim.o.cursorline = true
+

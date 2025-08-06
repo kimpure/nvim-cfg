@@ -6,4 +6,5 @@ require("config.keymaps")
 require("config.plugins.lazy")
 require("config.plugins.custom")
 
-require_dir("config.style")
+require("config.style.transparent")
+require("config.style.cursor-line")

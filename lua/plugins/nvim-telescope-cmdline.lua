@@ -12,7 +12,7 @@ return {
 					},
 
 					mappings = {
-						complete = "<Tab>",
+						edit = "<Tab>",
 						run_selection = "<C-CR>",
 						run_input = "<CR>",
 					},
