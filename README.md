@@ -2,8 +2,6 @@
 
 ![](assets/startup.png)
 ![](assets/edit.png)
-![](assets/cmdline.png)
-![](assets/terminal.png)
 
 ## [plugins](./lua/plugins)
 [lazy.nvim](https://github.com/folke/lazy.nvim)
