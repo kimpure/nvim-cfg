@@ -26,6 +26,12 @@ local groups = {
 	"EndOfBuffer",
 }
 
-for i = 1, #groups do
-	vim.cmd("highlight " .. groups[i] .. " guibg=NONE ctermbg=NONE")
+local function transparent()
+	for i = 1, #groups do
+		vim.cmd("highlight " .. groups[i] .. " guibg=NONE ctermbg=NONE")
+	end
 end
+
+vim.api.nvim_create_autocmd("ColorScheme", { callback = transparent })
+
+transparent()

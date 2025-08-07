@@ -17,6 +17,7 @@
 
 [lush.nvim](https://github.com/rktjmp/lush.nvim)
 [lavi.nvim](https://github.com/b0o/lavi.nvim)
+[lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
 
 [mason.nvim](https://github.com/mason-org/mason.nvim)
 [mason-lspconfig.nvim](https://github.com/mason-org/mason-lspconfig.nvim)
@@ -37,5 +38,4 @@
 
 TODO:
 cmp 고치기 (nvim 기본기능으로 바꿀듯?)
-warp.nvim 고치기
 
