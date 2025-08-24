@@ -29,3 +29,4 @@ vim.o.shell = "C:\\windows\\system32\\windowspowershell\\v1.0\\powershell.exe"
 vim.o.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command"
 vim.o.shellquote = ""
 vim.o.shellxquote = ""
+vim.o.cmdheight = 0
