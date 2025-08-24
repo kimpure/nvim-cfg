@@ -15,8 +15,7 @@
 [conform.nvim](https://github.com/stevearc/conform.nvim)
 [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
 
-[lush.nvim](https://github.com/rktjmp/lush.nvim)
-[lavi.nvim](https://github.com/b0o/lavi.nvim)
+[onedarkpro.nvim](https://github.com/olimorris/onedarkpro.nvim)
 [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
 
 [mason.nvim](https://github.com/mason-org/mason.nvim)
