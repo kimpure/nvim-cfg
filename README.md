@@ -36,4 +36,5 @@
 [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 [warp.nvim](https://github.com/kimpure/warp.nvim)
 [modes.nvim](https://github.com/mvllow/modes.nvim)
+[smart-splits.nvim](https://github.com/mrjones2014/smart-splits.nvim)
 
