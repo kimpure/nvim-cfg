@@ -28,17 +28,12 @@ return {
 
 			for lang_name, v in pairs(lang) do
 				local lsp_name = v.lsp
-
-				if not lspconfig[lsp_name] then
-					goto continue
+				if lsp_name and lspconfig[lsp_name] then
+					lspconfig[lsp_name].setup({
+						capabilities = capabilities,
+						filetypes = { lang_name },
+					})
 				end
-
-				lspconfig[lsp_name].setup({
-					capabilities = capabilities,
-					filetypes = { lang_name },
-				})
-
-				::continue::
 			end
 		end,
 	},
