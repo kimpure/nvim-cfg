@@ -13,10 +13,14 @@ module.config = {
 		lsp = "pyright",
 		formatters = { "black", "isort" },
 	},
-    typescript = {
-        lsp = "tsp_server",
-        formatters = {},
-    },
+	typescript = {
+		lsp = "tsp_server",
+		formatters = { "xo" },
+	},
+	javascript = {
+		lsp = "tsp_server",
+		formatters = { "xo" },
+	},
 	rust = {
 		lsp = "rust_analyzer",
 		formatters = { "rustfmt" },

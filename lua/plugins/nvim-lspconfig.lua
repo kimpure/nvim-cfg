@@ -18,21 +18,28 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
-		config = function()
+		init = function()
 			local lspconfig = require("lspconfig")
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
-			})
+			if type(lspconfig) ~= "table" then
+				return
+			end
 
-			lspconfig.rust_analyzer.setup({
-				capabilities = capabilities,
-			})
+			for lang_name, v in pairs(lang) do
+				local lsp_name = v.lsp
 
-			lspconfig.luau_lsp.setup({
-				capabilities = capabilities,
-			})
+				if not lspconfig[lsp_name] then
+					goto continue
+				end
+
+				lspconfig[lsp_name].setup({
+					capabilities = capabilities,
+					filetypes = { lang_name },
+				})
+
+				::continue::
+			end
 		end,
 	},
 }
