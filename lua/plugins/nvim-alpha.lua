@@ -10,7 +10,6 @@ return {
 		dashboard.section.buttons.val = {
 			dashboard.button("e", "  > New file", ":ene <BAR> startinsert <CR>"),
 			dashboard.button("r", "  > Open tree", ":Neotree<CR>"),
-			dashboard.button("t", "  > Open terminal", ":FTermOpen<CR>"),
 			dashboard.button("s", "  > Settings", ":e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>"),
 			dashboard.button("q", "🗙 > Quit nvim", ":qa<CR>"),
 		}
