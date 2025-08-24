@@ -1,7 +1,6 @@
 ## [nvim](https://github.com/neovim/neovim) dotfile
 
 ![](assets/startup.png)
-![](assets/edit.png)
 
 ## [plugins](./lua/plugins)
 [lazy.nvim](https://github.com/folke/lazy.nvim)
