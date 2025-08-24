@@ -35,7 +35,5 @@
 [nvim-treesitter-endwise](https://github.com/RRethy/nvim-treesitter-endwise)
 [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 [warp.nvim](https://github.com/kimpure/warp.nvim)
-
-TODO:
-cmp 고치기 (nvim 기본기능으로 바꿀듯?)
+[modes.nvim](https://github.com/mvllow/modes.nvim)
 

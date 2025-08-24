@@ -9,6 +9,14 @@ module.config = {
 		lsp = "luau_lsp",
 		formatters = { "stylua" },
 	},
+	python = {
+		lsp = "pyright",
+		formatters = { "black", "isort" },
+	},
+    typescript = {
+        lsp = "tsp_server",
+        formatters = {},
+    },
 	rust = {
 		lsp = "rust_analyzer",
 		formatters = { "rustfmt" },
