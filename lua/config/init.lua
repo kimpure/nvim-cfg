@@ -4,7 +4,6 @@ require_dir("config.vim")
 require("config.keymaps")
 
 require("config.plugins.lazy")
-require("config.plugins.custom")
 
 -- require("config.style.transparent")
 require("config.style.cursor-line")
