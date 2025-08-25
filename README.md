@@ -28,7 +28,6 @@
 
 [rainbow-delimiters.nvim](HiPhish/rainbow-delimiters.nvim)
 [tabby.nvim](https://github.com/nanozuki/tabby.nvim)
-[telescope-cmdline.nvim](https://github.com/jonarrien/telescope-cmdline.nvim)
 [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
 [nvim-treesitter-endwise](https://github.com/RRethy/nvim-treesitter-endwise)
 [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
