@@ -5,8 +5,8 @@ local local_plugins_dir = vim.fn.stdpath("config") .. "/lua/custom"
 local function load_local_plugins(path)
 	local plugins = {}
 	local handle = uv.fs_scandir(path)
-	
-    if not handle then
+
+	if not handle then
 		return plugins
 	end
 
