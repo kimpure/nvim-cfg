@@ -1,8 +1,11 @@
 local util = require("config.keymaps.util")
 local mapping = util.mapping
 
-mapping("K", function()
+local function hover()
 	vim.lsp.buf.hover({
 		border = "rounded",
 	})
-end)
+end
+
+mapping("K", hover)
+
