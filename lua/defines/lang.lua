@@ -5,10 +5,10 @@ module.config = {
 		lsp = "lua_ls",
 		formatters = { "stylua" },
 	},
-	luau = {
-		lsp = "luau_lsp",
-		formatters = { "stylua" },
-	},
+    luau = {
+        lsp = "luau_lsp",
+        formatters = { "stylua" },
+    },
 	python = {
 		lsp = "pyright",
 		formatters = { "black", "isort" },

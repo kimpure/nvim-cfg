@@ -20,6 +20,7 @@
 [mason.nvim](https://github.com/mason-org/mason.nvim)
 [mason-lspconfig.nvim](https://github.com/mason-org/mason-lspconfig.nvim)
 [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
+[luau-lsp.nvim](https://github.com/lopi-py/luau-lsp.nvim)
 
 [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim)
 [plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
