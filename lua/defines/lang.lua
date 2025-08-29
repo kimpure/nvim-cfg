@@ -41,7 +41,7 @@ do
 	end
 end
 
-module.treesiter = {}
+module.treesitter = {}
 do
 	for k, _ in pairs(module.config) do
 		module.treesiter[#module.treesiter + 1] = k

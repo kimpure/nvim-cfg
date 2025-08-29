@@ -1,6 +1,8 @@
 local groups = {
 	"Normal",
 	"NormalNC",
+	"NeoTreeNormal",
+	"NeotreeNormalNC",
 	"Comment",
 	"Constant",
 	"Special",
@@ -24,14 +26,18 @@ local groups = {
 	"StatusLine",
 	"StatusLineNC",
 	"EndOfBuffer",
+	"WinSeparator",
+	"MsgArea",
+	"Pmenu",
+	"PmenuSel",
 }
 
 local function transparent()
-	for i = 1, #groups do
-		vim.cmd("highlight " .. groups[i] .. " guibg=NONE ctermbg=NONE")
+	for _, group in ipairs(groups) do
+		vim.cmd("highlight " .. group .. " guibg=NONE ctermbg=NONE")
 	end
 end
 
-vim.api.nvim_create_autocmd("ColorScheme", { callback = transparent })
+vim.api.nvim_create_autocmd({ "WinEnter", "BufWinEnter", "ColorScheme" }, { callback = transparent })
 
 transparent()
