@@ -1,5 +1,6 @@
 return {
 	"anAcc22/sakura.nvim",
+	dependencies = "rktjmp/lush.nvim",
 	priority = 1000, -- Ensure it loads first
 	config = function()
 		vim.opt.background = "dark" -- or "light"

@@ -15,6 +15,7 @@
 [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
 
 [sakura.nvim](https://github.com/anAcc22/sakura.nvim)
+[lush.nvim](https://github.com/rktjmp/lush.nvim)
 [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
 
 [mason.nvim](https://github.com/mason-org/mason.nvim)
