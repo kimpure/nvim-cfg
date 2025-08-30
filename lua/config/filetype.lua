@@ -1,5 +1,5 @@
 vim.filetype.add({
-  extension = {
-    luau = "luau",
-  },
+	extension = {
+		luau = "luau",
+	},
 })

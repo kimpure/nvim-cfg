@@ -1,4 +1,3 @@
--- Setup lazy.nvim
 local uv = vim.uv or vim.loop
 local local_plugins_dir = vim.fn.stdpath("config") .. "/lua/custom"
 
