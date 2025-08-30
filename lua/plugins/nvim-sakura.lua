@@ -1,5 +1,5 @@
 return {
-	"olimorris/onedarkpro.nvim",
+	"anAcc22/sakura.nvim",
 	priority = 1000, -- Ensure it loads first
 	config = function()
 		vim.cmd("colorscheme onedark")
