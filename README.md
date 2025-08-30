@@ -14,7 +14,7 @@
 [conform.nvim](https://github.com/stevearc/conform.nvim)
 [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
 
-[sakura.nvim](https://github.com/anAcc22/sakura.nvim)
+[sakura.nvim](https://github.com/kimpure/sakura.nvim)
 [lush.nvim](https://github.com/rktjmp/lush.nvim)
 [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
 
