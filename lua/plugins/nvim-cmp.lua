@@ -12,6 +12,9 @@ return {
 		cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
 		return {
+			completion = {
+				autocomplete = { cmp.TriggerEvent.TextChanged },
+			},
 			mapping = cmp.mapping.preset.insert({
 				["<Down>"] = cmp.mapping.select_next_item(),
 				["<Up>"] = cmp.mapping.select_prev_item(),

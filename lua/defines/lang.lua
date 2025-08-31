@@ -15,15 +15,11 @@ module.config = {
 	},
 	typescript = {
 		lsp = "tsp_server",
-		formatters = { "xo" },
+		formatters = {},
 	},
 	javascript = {
 		lsp = "tsp_server",
-		formatters = { "xo" },
-	},
-	rust = {
-		lsp = "rust_analyzer",
-		formatters = { "rustfmt" },
+		formatters = {},
 	},
 }
 
