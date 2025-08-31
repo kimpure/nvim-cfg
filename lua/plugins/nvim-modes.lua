@@ -2,9 +2,9 @@ return {
 	"mvllow/modes.nvim",
 	config = function()
 		local color = require("defines.color")
-		local visual = color.fg1
+		local visual = color.fg0
         local bg = color.bg0
-        local insert = color.vs1
+        local insert = color.fg1
         local copy = color.sa0
         local delete = color.er0
 
