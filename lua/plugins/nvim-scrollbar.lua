@@ -1,4 +1,4 @@
 return {
-    "petertriho/nvim-scrollbar",
-    opts = {}
+	"petertriho/nvim-scrollbar",
+	opts = {},
 }

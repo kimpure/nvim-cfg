@@ -8,4 +8,3 @@ local function hover()
 end
 
 mapping("K", hover)
-
