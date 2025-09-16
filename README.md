@@ -36,4 +36,5 @@
 [warp.nvim](https://github.com/kimpure/warp.nvim)
 [modes.nvim](https://github.com/mvllow/modes.nvim)
 [smart-splits.nvim](https://github.com/mrjones2014/smart-splits.nvim)
+[nvim-scrollbar](https://github.com/petertriho/nvim-scrollbar)
 
