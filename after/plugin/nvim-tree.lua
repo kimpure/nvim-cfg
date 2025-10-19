@@ -93,9 +93,10 @@ nvim_tree.setup({
 		signcolumn = "yes",
 	},
 	renderer = {
+         special_files = {},
 		root_folder_label = false,
 		highlight_git = true,
-		indent_markers = {
+        indent_markers = {
 			enable = false,
 		},
 		icons = {

@@ -12,6 +12,11 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 		vim.api.nvim_set_hl(0, "NvimTreeGitDeleted", { fg = colors.delete, bold = false, cterm = nil })
         vim.api.nvim_set_hl(0, "NvimTreeGitIgnored", { fg = colors.ignore })
 
+        vim.api.nvim_set_hl(0, "NvimTreeFileIcon", { bold = false })
+        vim.api.nvim_set_hl(0, "NvimTreeFileName", { bold = false })
+        vim.api.nvim_set_hl(0, "NvimTreeFolderName", { bold = false })
+        vim.api.nvim_set_hl(0, "NvimTreeOpenedFolderName", { bold = false })
+        
         vim.api.nvim_set_hl(0, "Directory", { bold = false })
     end,
 })
