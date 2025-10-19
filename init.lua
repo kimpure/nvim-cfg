@@ -4,4 +4,4 @@ require("globals")
 require("mappings")
 require("diagnostic")
 
-vim.cmd("source " .. vim.fs.joinpath(vim.g.stdpath.config, "vim/options.vim"))
+vim.cmd("source " .. vim.fs.joinpath(vim.fn.stdpath("config"), "vim/options.vim"))
