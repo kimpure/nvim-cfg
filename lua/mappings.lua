@@ -12,3 +12,5 @@ keymap.set("n", "<A-k>", ":wincmd k<CR>")
 
 keymap.set("v", "<", "<gv")
 keymap.set("v", ">", ">gv")
+
+keymap.set("t", "<Esc>", "<C-\\><C-n>", { noremap = true, silent = true })
