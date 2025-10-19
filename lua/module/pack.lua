@@ -50,15 +50,21 @@ local plugs = {}
 
 --- @class Pack.AddSpec
 --- @field src string
---- @field version string?
+--- @field version? string
+--- @field boot? fun()
 
 --- Add packages
---- @param src Pack.AddSpec[]
-function pack.add(src)
-	for i = 1, #src do
-		local name = match(src[i].src, "^.+/(.+)$")
-		plugs[name] = get_package(src[i].src, name, src[i].version)
+--- @param specs Pack.AddSpec[]
+function pack.add(specs)
+	for i = 1, #specs do
+		local spec = specs[i]
+		local name = match(spec.src, "^.+/(.+)$")
+		plugs[name] = get_package(spec.src, name, spec.version)
 		vim.cmd("packadd " .. name)
+
+		if spec.boot then
+			spec.boot()
+		end
 	end
 end
 
