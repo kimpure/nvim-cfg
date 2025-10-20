@@ -77,6 +77,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 local lsp_servers = {
+	clangd = "clangd",
 	luau_lsp = "luau-lsp",
 	lua_ls = "lua-language-server",
 	vimls = "vim-language-server",
