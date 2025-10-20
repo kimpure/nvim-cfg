@@ -26,7 +26,7 @@ pack.add({
 	{
 		src = "https://github.com/kimpure/sakura.nvim",
 		boot = function()
-			vim.cmd("colorscheme sakura")
+			vim.cmd.colorscheme("sakura")
 		end,
 	},
 })
