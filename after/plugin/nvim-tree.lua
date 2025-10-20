@@ -140,12 +140,6 @@ nvim_tree.setup({
 	diagnostics = {
 		enable = false,
 		show_on_dirs = false,
-		icons = {
-			hint = "",
-			info = "",
-			warning = "",
-			error = "",
-		},
 	},
 	trash = {
 		cmd = "trash",
