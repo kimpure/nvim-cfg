@@ -2,7 +2,7 @@ set encoding=UTF-8
 set fileformat=unix
 set fileformats=unix
 set clipboard=unnamedplus
-set mouse=a
+set mouse+=a
 set termguicolors
 set background=dark
 set nowrap
