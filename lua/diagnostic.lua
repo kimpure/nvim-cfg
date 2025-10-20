@@ -48,7 +48,12 @@ api.nvim_create_autocmd("CursorHold", {
 		local cursor_pos = api.nvim_win_get_cursor(0)
 
 		if not vim.deep_equal(cursor_pos, vim.b.diagnostics_pos) then
-			diagnostic.open_float({})
+			diagnostic.open_float(nil, {
+				border = "none",
+				focusable = false,
+				close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+				scope = "cursor",
+			})
 		end
 
 		vim.b.diagnostics_pos = cursor_pos
