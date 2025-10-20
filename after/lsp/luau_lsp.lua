@@ -4,6 +4,16 @@ local function rojo_project()
 	end)
 end
 
+if rojo_project() then
+	vim.filetype.add({
+		extension = {
+			lua = function(path)
+				return path:match("%.nvim%.lua$") and "lua" or "luau"
+			end,
+		},
+	})
+end
+
 return {
 	cmd = "luau-lsp",
 	filetypes = { "luau" },
