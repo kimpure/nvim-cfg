@@ -7,7 +7,7 @@ capabilities.textDocument.foldingRange = {
 }
 capabilities.workspace = capabilities.workspace or {}
 capabilities.workspace.didChangeWatchedFiles = {
-    dynamicRegistration = true,
+	dynamicRegistration = true,
 }
 
 vim.lsp.config("*", {
