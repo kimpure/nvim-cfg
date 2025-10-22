@@ -20,7 +20,7 @@ return {
 	settings = {
 		["luau-lsp"] = {
 			platform = {
-				type = rojo_project() and "roblox" or "standard",
+				type = "roblox",
 			},
 			sourcemap = {
 				enabled = true,
