@@ -6,6 +6,7 @@ require("cmp_buffer")
 require("cmp_cmdline")
 
 cmp.setup({
+	preselect = cmp.PreselectMode.None,
 	mapping = cmp.mapping.preset.insert({
 		["<Down>"] = function(fallback)
 			if cmp.visible() then
@@ -21,7 +22,13 @@ cmp.setup({
 				fallback()
 			end
 		end,
-		["<Tab>"] = cmp.mapping.confirm({ select = true }),
+		["<Tab>"] = function(fallback)
+			if cmp.visible() and cmp.get_selected_entry() then
+				cmp.confirm({ select = false })
+			else
+				fallback()
+			end
+		end,
 		["<C-e>"] = cmp.mapping.abort(),
 		["<Esc>"] = cmp.mapping.close(),
 	}),
@@ -32,7 +39,7 @@ cmp.setup({
 	},
 	completion = {
 		keyword_length = 1,
-		completeopt = "menu,menuone,noselect",
+		completeopt = "menu,menuone,noselect,noinsert",
 	},
 	window = {
 		completion = cmp.config.window.bordered({
