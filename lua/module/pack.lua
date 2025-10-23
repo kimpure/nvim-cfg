@@ -30,6 +30,7 @@ local function get_package(src, name, version)
 
 		if vim.v.shell_error ~= 0 then
 			vim.api.nvim_echo({ { "Failed to clone " .. name } }, true, {})
+			os.exit(1)
 		end
 	end
 
@@ -43,15 +44,20 @@ end
 --- @class Pack.Spec
 --- @field src string URI from which to install and pull updates
 --- @field name string Name of plugin
---- @field version string? to use for install and updates
+--- @field version string? Use for install and updates
+--- @field load  boolean? Load plugin status
 
 --- @type table<string, Pack.Spec>
 local plugs = {}
+
+--- @type table<string, string>
+local not_load_plugins = {}
 
 --- @class Pack.AddSpec
 --- @field src string
 --- @field version? string
 --- @field boot? fun()
+--- @field event string? Load plugin event
 
 --- Add packages
 --- @param specs Pack.AddSpec[]
@@ -59,11 +65,29 @@ function pack.add(specs)
 	for i = 1, #specs do
 		local spec = specs[i]
 		local name = match(spec.src, "^.+/(.+)$")
-		plugs[name] = get_package(spec.src, name, spec.version)
-		vim.cmd("packadd " .. name)
+		local event = spec.event
 
-		if spec.boot then
-			spec.boot()
+		plugs[name] = get_package(spec.src, name, spec.version)
+
+		if event then
+			not_load_plugins[name] = vim.api.nvim_create_autocmd(event, {
+				once = true,
+				callback = function()
+					vim.cmd("packadd " .. name)
+
+					if spec.boot then
+						spec.boot()
+					end
+
+					vim.api.nvim_del_autocmd(not_load_plugins[name])
+				end,
+			})
+		else
+			vim.cmd("packadd " .. name)
+
+			if spec.boot then
+				spec.boot()
+			end
 		end
 	end
 end
