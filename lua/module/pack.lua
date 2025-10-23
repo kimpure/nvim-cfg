@@ -135,7 +135,7 @@ function pack.update(names)
 		local name = names[i]
 
 		if plugs[name] then
-			local src = plugs[i].src
+			local src = plugs[names[i]].src
 			pack.del({ name })
 			pack.add({ { src = src } })
 		else
