@@ -27,9 +27,9 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 })
 
 pack.add({
-	{ src = "https://github.com/rktjmp/lush.nvim" },
+	{ src = "github.com/rktjmp/lush.nvim" },
 	{
-		src = "https://github.com/kimpure/sakura.nvim",
+		src = "github.com/kimpure/sakura.nvim",
 		boot = function()
 			vim.cmd.colorscheme("sakura")
 		end,

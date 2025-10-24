@@ -1,6 +1,6 @@
 pack.add({
 	{
-		src = "https://github.com/windwp/nvim-autopairs",
+		src = "github.com/windwp/nvim-autopairs",
 		event = "InsertEnter",
 		boot = function()
 			require("nvim-autopairs").setup()

@@ -1,3 +1,3 @@
 pack.add({
-	{ src = "https://github.com/mason-org/mason.nvim" },
+	{ src = "github.com/mason-org/mason.nvim" },
 })

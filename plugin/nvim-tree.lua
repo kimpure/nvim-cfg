@@ -1,5 +1,5 @@
 pack.add({
-	{ src = "https://github.com/nvim-lua/plenary.nvim" },
-	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
-	{ src = "https://github.com/nvim-tree/nvim-tree.lua" },
+	{ src = "github.com/nvim-lua/plenary.nvim" },
+	{ src = "github.com/nvim-tree/nvim-web-devicons" },
+	{ src = "github.com/nvim-tree/nvim-tree.lua" },
 })
