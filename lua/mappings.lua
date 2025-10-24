@@ -1,5 +1,9 @@
 local keymap = vim.keymap
 
+keymap.set({ "n", "v" }, "d", '"_d', { noremap = true })
+keymap.set("n", "dd", '"_dd', { noremap = true })
+keymap.set("v", "D", '"_D', { noremap = true })
+
 keymap.set("n", "<A-Right>", ":wincmd l<CR>")
 keymap.set("n", "<A-Left>", ":wincmd h<CR>")
 keymap.set("n", "<A-Down>", ":wincmd j<CR>")
