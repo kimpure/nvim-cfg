@@ -1,4 +1,5 @@
 vim.api.nvim_create_autocmd("ColorScheme", {
+	pattern = "*",
 	callback = function()
 		local colors = {
 			add = "#81b88b",
@@ -18,6 +19,10 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 		vim.api.nvim_set_hl(0, "NvimTreeOpenedFolderName", { bold = false })
 
 		vim.api.nvim_set_hl(0, "Directory", { bold = false })
+
+		vim.api.nvim_set_hl(0, "GitSignsChangeInline", { gui = "reverse" })
+		vim.api.nvim_set_hl(0, "GitSignsAddInline ", { gui = "reverse" })
+		vim.api.nvim_set_hl(0, "GitSignsDeleteInline", { gui = "reverse" })
 	end,
 })
 
