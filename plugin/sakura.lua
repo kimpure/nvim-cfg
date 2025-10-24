@@ -20,9 +20,9 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 
 		vim.api.nvim_set_hl(0, "Directory", { bold = false })
 
-		vim.api.nvim_set_hl(0, "GitSignsChangeInline", { gui = "reverse" })
-		vim.api.nvim_set_hl(0, "GitSignsAddInline ", { gui = "reverse" })
-		vim.api.nvim_set_hl(0, "GitSignsDeleteInline", { gui = "reverse" })
+		vim.api.nvim_set_hl(0, "GitSignsChangeInline", { reverse = true })
+		vim.api.nvim_set_hl(0, "GitSignsAddInline", { reverse = true })
+		vim.api.nvim_set_hl(0, "GitSignsDeleteInline", { reverse = true })
 	end,
 })
 
