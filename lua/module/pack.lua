@@ -48,7 +48,7 @@ end
 --- @field src string URI from which to install and pull updates
 --- @field name string Name of plugin
 --- @field version string? Use for install and updates
---- @field load  boolean? Load plugin status
+--- @field load boolean? Load plugin status
 
 --- @type table<string, Pack.Spec>
 local plugs = {}
