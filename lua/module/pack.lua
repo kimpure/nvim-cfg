@@ -14,7 +14,7 @@ local insert = table.insert
 --- @return Pack.Spec
 local function get_package(src, name, version)
 	src = sub(src, 6) == "https:" and src or "https://" .. src
-    name = name or match(src, "^.+/(.+)$")
+	name = name or match(src, "^.+/(.+)$")
 	local path = opt_path .. name
 
 	if vim.fn.empty(vim.fn.glob(path)) > 0 then
@@ -59,7 +59,7 @@ local not_load_plugins = {}
 --- @class Pack.AddSpec
 --- @field src string
 --- @field version? string
---- @field boot? fun() | string
+--- @field boot? fun() | { [1]: string, [string]: any }
 --- @field event string? Load plugin event
 
 --- Add packages
@@ -68,7 +68,7 @@ function pack.add(specs)
 	for i = 1, #specs do
 		local spec = specs[i]
 		local name = match(spec.src, "^.+/(.+)$")
-        local boot = spec.boot
+		local boot = spec.boot
 		local event = spec.event
 
 		plugs[name] = get_package(spec.src, name, spec.version)
@@ -80,12 +80,14 @@ function pack.add(specs)
 					vim.cmd("packadd " .. name)
 
 					if boot then
-                        if type(boot) == "string" then
-                            require(boot)
-                        else
-                            boot()
-                        end
-                    end
+						if type(boot) == "table" then
+							local boot_name = boot[1]
+							boot[1] = nil
+							require(boot_name).setup(boot)
+						else
+							boot()
+						end
+					end
 
 					vim.api.nvim_del_autocmd(not_load_plugins[name])
 				end,
@@ -94,11 +96,13 @@ function pack.add(specs)
 			vim.cmd("packadd " .. name)
 
 			if boot then
-                if type(boot) == "string" then
-                    require(boot)
-                else
-                    boot()
-                end
+				if type(boot) == "table" then
+                    local boot_name = boot[1]
+                    boot[1] = nil
+                    require(boot_name).setup(boot)
+				else
+					boot()
+				end
 			end
 		end
 	end

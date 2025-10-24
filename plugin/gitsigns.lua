@@ -1,6 +1,24 @@
 pack.add({
 	{
 		src = "github.com/lewis6991/gitsigns.nvim",
-		boot = "gitsigns",
+		boot = {
+			"gitsigns",
+			signs = {
+				add = { text = "┃" },
+				change = { text = "┃" },
+				delete = { text = "┃" },
+				topdelete = { text = "┃" },
+				changedelete = { text = "┃" },
+				untracked = { text = "┆" },
+			},
+			signs_staged = {
+				add = { text = "┃" },
+				change = { text = "┃" },
+				delete = { text = "┃" },
+				topdelete = { text = "┃" },
+				changedelete = { text = "┃" },
+				untracked = { text = "┆" },
+			},
+		},
 	},
 })
