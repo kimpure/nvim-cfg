@@ -108,7 +108,6 @@ nvim_tree.setup({
 	},
 	renderer = {
 		special_files = {},
-		root_folder_label = ":~:s?$?/..?",
         highlight_git = true,
 		indent_markers = {
 			enable = false,
