@@ -35,7 +35,14 @@ cmp.setup({
 	sources = {
 		{ name = "nvim_lsp" },
 		{ name = "path" },
-		{ name = "buffer", keyword_length = 2 },
+		{
+			name = "buffer",
+			keyword_length = 2,
+		},
+		{
+			name = "lazydev",
+			group_index = 0,
+		},
 	},
 	completion = {
 		keyword_length = 1,
