@@ -33,7 +33,6 @@ local function get_package(src, name, version)
 		if vim.v.shell_error ~= 0 then
 			vim.api.nvim_echo({ { "Failed to clone " .. name } }, true, {})
 			vim.fn.getchar()
-			os.exit(1)
 		end
 	end
 
