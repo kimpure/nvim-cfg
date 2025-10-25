@@ -13,6 +13,17 @@ local function on_attach(bufnr)
 		}
 	end
 
+    local function open_node()
+        local node = api.tree.get_node_under_cursor()
+
+        --// Blocked root_folder_label
+        if not node or not node.parent then
+            return
+        end
+        
+        api.node.open.edit()
+    end
+
 	vim.keymap.set("n", ".", api.tree.change_root_to_node, opts("CD"))
 	vim.keymap.set("n", "<BS>", api.tree.change_root_to_parent, opts("Up"))
 
@@ -24,8 +35,11 @@ local function on_attach(bufnr)
 	vim.keymap.set("n", "<C-v>", api.node.open.vertical, opts("Open: Vertical Split"))
 	vim.keymap.set("n", "<C-x>", api.node.open.horizontal, opts("Open: Horizontal Split"))
 	-- vim.keymap.set("n", "<BS>", api.node.navigate.parent_close, opts("Close Directory"))
-	vim.keymap.set("n", "<CR>", api.node.open.edit, opts("Open"))
-	vim.keymap.set("n", "<Tab>", api.node.open.preview, opts("Open Preview"))
+	-- vim.keymap.set("n", "<CR>", api.node.open.edit, opts("Open"))
+	
+    vim.keymap.set("n", "<CR>", open_node, opts("Open"))
+
+    vim.keymap.set("n", "<Tab>", api.node.open.preview, opts("Open Preview"))
 	vim.keymap.set("n", ">", api.node.navigate.sibling.next, opts("Next Sibling"))
 	vim.keymap.set("n", "<", api.node.navigate.sibling.prev, opts("Previous Sibling"))
 	-- vim.keymap.set("n", ".", api.node.run.cmd, opts("Run Command"))
@@ -72,7 +86,7 @@ local function on_attach(bufnr)
 	vim.keymap.set("n", "x", api.fs.cut, opts("Cut"))
 	vim.keymap.set("n", "y", api.fs.copy.filename, opts("Copy Name"))
 	vim.keymap.set("n", "Y", api.fs.copy.relative_path, opts("Copy Relative Path"))
-	vim.keymap.set("n", "<2-LeftMouse>", api.node.open.edit, opts("Open"))
+	vim.keymap.set("n", "<2-LeftMouse>", open_node, opts("Open"))
 	vim.keymap.set("n", "<2-RightMouse>", api.tree.change_root_to_node, opts("CD"))
 end
 
@@ -94,8 +108,8 @@ nvim_tree.setup({
 	},
 	renderer = {
 		special_files = {},
-		root_folder_label = false,
-		highlight_git = true,
+		root_folder_label = ":~:s?$?/..?",
+        highlight_git = true,
 		indent_markers = {
 			enable = false,
 		},
@@ -138,8 +152,14 @@ nvim_tree.setup({
 		},
 	},
 	diagnostics = {
-		enable = false,
-		show_on_dirs = false,
+        enable = true,
+		show_on_dirs = true,
+		icons = {
+			hint = "H",
+			info = "I",
+			warning = "W",
+			error = "E",
+		},
 	},
 	trash = {
 		cmd = "trash",
