@@ -32,10 +32,21 @@ local function on_attach(bufnr)
             return
         end
 
+        api.tree.change_root_to_parent(...)
+    end
+
+    local function root_to_node(...)
+        local node = api.tree.get_node_under_cursor()
+
+        --// Blocked root_folder_label
+        if not node or not node.parent then
+            return
+        end
+
         api.tree.change_root_to_node(...)
     end
 
-	vim.keymap.set("n", ".", api.tree.change_root_to_node, opts("CD"))
+	vim.keymap.set("n", ".", root_to_node, opts("CD"))
 	vim.keymap.set("n", "<BS>", parent_node, opts("Up"))
 
 	-- vim.keymap.set("n", "<C-]>", api.tree.change_root_to_node, opts("CD"))
@@ -98,7 +109,7 @@ local function on_attach(bufnr)
 	vim.keymap.set("n", "y", api.fs.copy.filename, opts("Copy Name"))
 	vim.keymap.set("n", "Y", api.fs.copy.relative_path, opts("Copy Relative Path"))
 	vim.keymap.set("n", "<2-LeftMouse>", open_node, opts("Open"))
-	vim.keymap.set("n", "<2-RightMouse>", api.tree.change_root_to_node, opts("CD"))
+	vim.keymap.set("n", "<2-RightMouse>", root_to_node, opts("CD"))
 end
 
 nvim_tree.setup({
