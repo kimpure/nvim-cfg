@@ -13,7 +13,7 @@ local function on_attach(bufnr)
 		}
 	end
 
-    local function open_node()
+    local function open_node(...)
         local node = api.tree.get_node_under_cursor()
 
         --// Blocked root_folder_label
@@ -21,11 +21,22 @@ local function on_attach(bufnr)
             return
         end
         
-        api.node.open.edit()
+        api.node.open.edit(...)
+    end
+
+    local function parent_node(...)
+        local node = api.tree.get_node_under_cursor()
+
+        --// Blocked root_folder_label
+        if not node or not node.parent then
+            return
+        end
+
+        api.tree.change_root_to_node(...)
     end
 
 	vim.keymap.set("n", ".", api.tree.change_root_to_node, opts("CD"))
-	vim.keymap.set("n", "<BS>", api.tree.change_root_to_parent, opts("Up"))
+	vim.keymap.set("n", "<BS>", parent_node, opts("Up"))
 
 	-- vim.keymap.set("n", "<C-]>", api.tree.change_root_to_node, opts("CD"))
 	vim.keymap.set("n", "<C-e>", api.node.open.replace_tree_buffer, opts("Open: In Place"))
