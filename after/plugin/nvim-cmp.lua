@@ -8,20 +8,20 @@ require("cmp_cmdline")
 cmp.setup({
 	preselect = cmp.PreselectMode.None,
 	mapping = cmp.mapping.preset.insert({
-		["<Down>"] = function(fallback)
+		["<Down>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
 			else
 				fallback()
 			end
-		end,
-		["<Up>"] = function(fallback)
+		end, { "i", "s" }),
+		["<Up>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
 			else
 				fallback()
 			end
-		end,
+		end, { "i", "s" }),
 		["<Tab>"] = function(fallback)
 			if cmp.visible() and cmp.get_selected_entry() then
 				cmp.confirm({ select = false })
