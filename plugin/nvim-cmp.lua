@@ -4,7 +4,10 @@ pack.add({
 		boot = {
 			"lazydev",
 			library = {
-				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+				{
+					path = "${3rd}/luv/library",
+					words = { "vim%.uv" },
+				},
 			},
 		},
 	},

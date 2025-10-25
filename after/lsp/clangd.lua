@@ -12,7 +12,7 @@ return {
 		".mm",
 	},
 	handlers = {
-		["textDocument/publishDiagnostics"] = function(_, result, ctx, config)
+		["textDocument/publishDiagnostics"] = function(_, result, ctx)
 			if not result then
 				return
 			end
@@ -26,7 +26,7 @@ return {
 			end
 
 			result.diagnostics = filtered
-			vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
+			vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx)
 		end,
 	},
 }
