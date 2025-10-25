@@ -15,7 +15,7 @@ if rojo_project() then
 end
 
 return {
-	cmd = "luau-lsp",
+	cmd = { "luau-lsp" },
 	filetypes = { "luau" },
 	settings = {
 		["luau-lsp"] = {

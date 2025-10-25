@@ -85,6 +85,7 @@ local lsp_servers = {
 	luau_lsp = "luau-lsp",
 	lua_ls = "lua-language-server",
 	vimls = "vim-language-server",
+	rust_analyzer = "rust-analyzer",
 }
 
 local registry = require("mason-registry")

@@ -97,9 +97,9 @@ function pack.add(specs)
 
 			if boot then
 				if type(boot) == "table" then
-                    local boot_name = boot[1]
-                    boot[1] = nil
-                    require(boot_name).setup(boot)
+					local boot_name = boot[1]
+					boot[1] = nil
+					require(boot_name).setup(boot)
 				else
 					boot()
 				end
