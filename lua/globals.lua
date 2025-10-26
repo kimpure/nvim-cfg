@@ -12,4 +12,3 @@ vim.g.is_linux = utils.has("unix") or utils.has("macunix")
 vim.g.is_mac = utils.has("macunix")
 
 vim.g.lazydev_enabled = vim.fn.getcwd() == vim.fn.stdpath("config")
-

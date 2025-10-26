@@ -10,7 +10,7 @@ return {
 			},
 		},
 	},
-    handlers = {
+	handlers = {
 		["textDocument/publishDiagnostics"] = function(_, result, ctx)
 			if not result then
 				return

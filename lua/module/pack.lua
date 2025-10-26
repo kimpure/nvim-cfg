@@ -116,10 +116,10 @@ function pack.del(names)
 		plugs[name] = nil
 		package.loaded[name] = nil
 		vim.fn.delete(path, "rf")
-        if not_load_plugins[name] then
-            vim.api.nvim_del_autocmd(not_load_plugins[name])
-            not_load_plugins[name] = nil
-        end
+		if not_load_plugins[name] then
+			vim.api.nvim_del_autocmd(not_load_plugins[name])
+			not_load_plugins[name] = nil
+		end
 	end
 end
 
@@ -154,7 +154,7 @@ function pack.update(names)
 		local name = names[i]
 
 		if plugs[name] then
-            local plugin = pack.get({ name })
+			local plugin = pack.get({ name })
 
 			pack.del({ name })
 			pack.add(plugin)
