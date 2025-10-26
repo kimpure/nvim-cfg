@@ -52,7 +52,7 @@ end
 --- @type table<string, Pack.Spec>
 local plugs = {}
 
---- @type table<string, string>
+--- @type table<string, integer>
 local not_load_plugins = {}
 
 --- @class Pack.AddSpec
