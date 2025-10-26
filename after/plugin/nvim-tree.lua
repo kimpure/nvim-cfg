@@ -73,7 +73,7 @@ local function on_attach(bufnr)
 				return
 			end
 
-			utils.fs.recycle_file(node.absolute_path)
+			utils.fs.trash_file(node.absolute_path)
 
 			api.tree.reload()
 		else

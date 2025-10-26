@@ -30,13 +30,14 @@ function utils.has(feat)
 end
 
 local is_windows = utils.has("win32") or utils.has("win64")
+local is_mac = utils.has("macunix")
 
 --- @class Utils.FileSystem
 local fs = {}
 fs.path_prefix = is_windows and "\\" or "/"
 
 --- Remove directory
---- @param p string target path
+--- @param p string target file path
 function fs.remove_file(p)
 	if is_windows then
         if fn.isdirectory(p) == 1 then
@@ -130,9 +131,9 @@ local function utf8_to_utf16le(str)
 	return concat(out)
 end
 
---- Recycle file
---- @param p string target path
-function fs.recycle_file(p)
+--- Move to trash the file
+--- @param p string target file path
+function fs.trash_file(p)
 	if is_windows then
 		if fn.isdirectory(p) == 1 and not match(p, "[\\/]$") then
 			p = p .. "\\"
@@ -153,9 +154,24 @@ function fs.recycle_file(p)
 		fAnyOperationsAborted = 0
 
 		shell32.SHFileOperationW(fop)
-	else
-		-- You should have trash-cli
-		vim.fn.system({ "trash", vim.fn.fnameescape(p) })
+	elseif is_mac then
+        local trash_name = fn.fnamemodify(p, ":t")
+        local trash_path = fn.expand("/.Trash")
+
+        if fn.isdirectory(trash_path) then
+            fn.rename(p, trash_path .. "/" .. trash_name)
+        else
+            vim.notify("Not found a trash path, path: " .. trash_path, vim.log.levels.WARN)
+        end
+    else
+        local trash_name = fn.fnamemodify(p, ":t")
+        local trash_path = fn.expand("/.local/share/Trash/files")
+
+        if fn.isdirectory(trash_path) then
+            fn.rename(p, trash_path .. "/" .. trash_name)
+        else
+            vim.notify("Not found a trash path, path: " .. trash_path, vim.log.levels.WARN)
+        end
 	end
 end
 
