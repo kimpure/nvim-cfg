@@ -19,7 +19,7 @@ return {
 			local filtered = {}
 
 			for _, diag in ipairs(result.diagnostics) do
-				if diag.severity ~= vim.diagnostic.severity.WARN and diag.severity ~= vim.diagnostic.severity.HINT then
+				if diag.severity ~= vim.diagnostic.severity.HINT then
 					table.insert(filtered, diag)
 				end
 			end
