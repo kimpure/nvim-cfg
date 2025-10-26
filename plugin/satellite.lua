@@ -9,6 +9,14 @@ pack.add({
 				marks = {
 					enable = false,
 				},
+                gitsigns = {
+                    enable = true,
+                    signs = { 
+                        add = "│",
+                        change = "│",
+                        delete = "│",
+                    },
+                },
 			},
 		},
 	},
