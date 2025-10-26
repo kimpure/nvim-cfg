@@ -1,12 +1,21 @@
 local fn = vim.fn
 local uv = vim.uv or vim.loop
 
+local byte = string.byte
 local char = string.char
 local format = string.format
 local gsub = string.gsub
 local match = string.match
 
 local floor = math.floor
+
+local insert = table.insert
+local concat = table.concat
+
+local band = bit.band
+local bor = bit.bor
+local lshift = bit.lshift
+local rshift = bit.rshift
 
 local ffi = require("ffi")
 local shell32 = ffi.load("Shell32")
@@ -82,43 +91,43 @@ local function utf8_to_utf16le(str)
 	local i = 1
 	local n = #str
 	while i <= n do
-		local c = str:byte(i)
+		local c = byte(str, i)
 		local code
 		if c < 0x80 then
 			code = c
 			i = i + 1
 		elseif c < 0xE0 then
-			code = bit.bor(bit.lshift(bit.band(c, 0x1F), 6), bit.band(str:byte(i + 1), 0x3F))
+			code = bor(lshift(band(c, 0x1F), 6), band(byte(str, i + 1), 0x3F))
 			i = i + 2
 		elseif c < 0xF0 then
-			code = bit.bor(
-				bit.lshift(bit.band(c, 0x0F), 12),
-				bit.lshift(bit.band(str:byte(i + 1), 0x3F), 6),
-				bit.band(str:byte(i + 2), 0x3F)
+			code = bor(
+				lshift(band(c, 0x0F), 12),
+				lshift(band(byte(str, i + 1), 0x3F), 6),
+				band(byte(str, i + 2), 0x3F)
 			)
 			i = i + 3
 		else
-			code = bit.bor(
-				bit.lshift(bit.band(c, 0x07), 18),
-				bit.lshift(bit.band(str:byte(i + 1), 0x3F), 12),
-				bit.lshift(bit.band(str:byte(i + 2), 0x3F), 6),
-				bit.band(str:byte(i + 3), 0x3F)
+			code = bor(
+				lshift(band(c, 0x07), 18),
+				lshift(band(byte(str, i + 1), 0x3F), 12),
+				lshift(band(byte(str, i + 2), 0x3F), 6),
+				band(byte(str, i + 3), 0x3F)
 			)
 			i = i + 4
 		end
 
 		if code <= 0xFFFF then
-			table.insert(out, string.char(bit.band(code, 0xFF), bit.rshift(code, 8)))
+			insert(out, char(band(code, 0xFF), rshift(code, 8)))
 		else
 			code = code - 0x10000
-			local high = 0xD800 + bit.rshift(code, 10)
-			local low = 0xDC00 + bit.band(code, 0x3FF)
-			table.insert(out, string.char(bit.band(high, 0xFF), bit.rshift(high, 8)))
-			table.insert(out, string.char(bit.band(low, 0xFF), bit.rshift(low, 8)))
+			local high = 0xD800 + rshift(code, 10)
+			local low = 0xDC00 + band(code, 0x3FF)
+			insert(out, char(band(high, 0xFF), rshift(high, 8)))
+			insert(out, char(band(low, 0xFF), rshift(low, 8)))
 		end
 	end
-	table.insert(out, "\0\0")
-	return table.concat(out)
+	insert(out, "\0\0")
+	return concat(out)
 end
 
 --- Recycle file
@@ -141,7 +150,7 @@ function fs.recycle_file(p)
 		fop.hwnd = nil
 		fop.hNameMappings = nil
 		fop.lpszProgressTitle = nil
-		fop.fAnyOperationsAborted = 0
+		fAnyOperationsAborted = 0
 
 		shell32.SHFileOperationW(fop)
 	else
