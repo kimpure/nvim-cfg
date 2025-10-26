@@ -24,17 +24,6 @@ local function on_attach(bufnr)
         api.node.open.edit(...)
     end
 
-    local function parent_node(...)
-        local node = api.tree.get_node_under_cursor()
-
-        --// Blocked root_folder_label
-        if not node or not node.parent then
-            return
-        end
-
-        api.tree.change_root_to_parent(...)
-    end
-
     local function root_to_node(...)
         local node = api.tree.get_node_under_cursor()
 
@@ -47,7 +36,7 @@ local function on_attach(bufnr)
     end
 
 	vim.keymap.set("n", ".", root_to_node, opts("CD"))
-	vim.keymap.set("n", "<BS>", parent_node, opts("Up"))
+	vim.keymap.set("n", "<BS>", api.tree.change_root_to_parent, opts("Up"))
 
 	-- vim.keymap.set("n", "<C-]>", api.tree.change_root_to_node, opts("CD"))
 	vim.keymap.set("n", "<C-e>", api.node.open.replace_tree_buffer, opts("Open: In Place"))
@@ -131,7 +120,7 @@ nvim_tree.setup({
 	renderer = {
 		special_files = {},
         highlight_git = true,
-		root_folder_label = ":~:s?$?",
+        root_folder_label = ":~:s?$?",
         indent_markers = {
 			enable = false,
 		},
