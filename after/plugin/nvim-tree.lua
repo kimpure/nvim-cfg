@@ -13,27 +13,73 @@ local function on_attach(bufnr)
 		}
 	end
 
-    local function open_node(...)
-        local node = api.tree.get_node_under_cursor()
+	local function open_node(...)
+		local node = api.tree.get_node_under_cursor()
 
-        --// Blocked root_folder_label
-        if not node or not node.parent then
-            return
-        end
-        
-        api.node.open.edit(...)
-    end
+		--// Blocked root_folder_label
+		if not node or not node.parent then
+			return
+		end
 
-    local function root_to_node(...)
-        local node = api.tree.get_node_under_cursor()
+		api.node.open.edit(...)
+	end
 
-        --// Blocked root_folder_label
-        if not node or not node.parent then
-            return
-        end
+	local function root_to_node(...)
+		local node = api.tree.get_node_under_cursor()
 
-        api.tree.change_root_to_node(...)
-    end
+		--// Blocked root_folder_label
+		if not node or not node.parent then
+			return
+		end
+
+		api.tree.change_root_to_node(...)
+	end
+
+	local function remove()
+		local node = api.tree.get_node_under_cursor()
+		local lower = string.lower
+
+		if vim.g.is_windows then
+			if not node or not node.absolute_path then
+				return
+			end
+
+			local confirm = vim.fn.input("Remove " .. node.name .. "? y/N: ")
+
+			if lower(confirm) ~= "y" then
+				return
+			end
+
+			utils.fs.remove_file(node.absolute_path)
+
+			api.tree.reload()
+		else
+			api.fs.remove()
+		end
+	end
+
+	local function trash()
+		local node = api.tree.get_node_under_cursor()
+		local lower = string.lower
+
+		if vim.g.is_windows then
+			if not node or not node.absolute_path then
+				return
+			end
+
+			local confirm = vim.fn.input("Trash " .. node.name .. "? y/N: ")
+
+			if lower(confirm) ~= "y" then
+				return
+			end
+
+			utils.fs.recycle_file(node.absolute_path)
+
+			api.tree.reload()
+		else
+			api.fs.trash()
+		end
+	end
 
 	vim.keymap.set("n", ".", root_to_node, opts("CD"))
 	vim.keymap.set("n", "<BS>", api.tree.change_root_to_parent, opts("Up"))
@@ -47,10 +93,10 @@ local function on_attach(bufnr)
 	vim.keymap.set("n", "<C-x>", api.node.open.horizontal, opts("Open: Horizontal Split"))
 	-- vim.keymap.set("n", "<BS>", api.node.navigate.parent_close, opts("Close Directory"))
 	-- vim.keymap.set("n", "<CR>", api.node.open.edit, opts("Open"))
-	
-    vim.keymap.set("n", "<CR>", open_node, opts("Open"))
 
-    vim.keymap.set("n", "<Tab>", api.node.open.preview, opts("Open Preview"))
+	vim.keymap.set("n", "<CR>", open_node, opts("Open"))
+
+	vim.keymap.set("n", "<Tab>", api.node.open.preview, opts("Open Preview"))
 	vim.keymap.set("n", ">", api.node.navigate.sibling.next, opts("Next Sibling"))
 	vim.keymap.set("n", "<", api.node.navigate.sibling.prev, opts("Previous Sibling"))
 	-- vim.keymap.set("n", ".", api.node.run.cmd, opts("Run Command"))
@@ -64,8 +110,8 @@ local function on_attach(bufnr)
 	vim.keymap.set("n", "C", api.tree.toggle_git_clean_filter, opts("Toggle Filter: Git Clean"))
 	vim.keymap.set("n", "[c", api.node.navigate.git.prev, opts("Prev Git"))
 	vim.keymap.set("n", "]c", api.node.navigate.git.next, opts("Next Git"))
-	vim.keymap.set("n", "d", api.fs.remove, opts("Delete"))
-	vim.keymap.set("n", "D", api.fs.trash, opts("Trash"))
+	vim.keymap.set("n", "d", remove, opts("Delete"))
+	vim.keymap.set("n", "D", trash, opts("Trash"))
 	vim.keymap.set("n", "E", api.tree.expand_all, opts("Expand All"))
 	vim.keymap.set("n", "e", api.fs.rename_basename, opts("Rename: Basename"))
 	vim.keymap.set("n", "]e", api.node.navigate.diagnostics.next, opts("Next Diagnostic"))
@@ -119,9 +165,9 @@ nvim_tree.setup({
 	},
 	renderer = {
 		special_files = {},
-        highlight_git = true,
-        root_folder_label = ":~:s?$?",
-        indent_markers = {
+		highlight_git = true,
+		root_folder_label = ":~:s?$?",
+		indent_markers = {
 			enable = false,
 		},
 		icons = {
@@ -161,9 +207,12 @@ nvim_tree.setup({
 			global = false,
 			restrict_above_cwd = false,
 		},
+		remove_file = {
+			close_window = false,
+		},
 	},
 	diagnostics = {
-        enable = true,
+		enable = true,
 		show_on_dirs = true,
 		icons = {
 			hint = "H",
@@ -180,6 +229,12 @@ nvim_tree.setup({
 		enable = false,
 		truncate = false,
 	},
+
+	-- Use this when NvimTree is too slow.
+	-- filesystem_watchers = {
+	--     enable = false,
+	-- },
+
 	on_attach = on_attach,
 })
 
