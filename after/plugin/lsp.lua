@@ -69,7 +69,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			})
 		end, {
 			silent = true,
-			buffer = event_context.bufnr,
+			buffer = event_context.buf,
 		})
 
 		vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, {
