@@ -31,6 +31,7 @@ set shadafile=NONE
 set noswapfile
 
 set signcolumn=yes
+set background=dark
 
 if has("win32") || has("win64")
     set shell=C:\\windows\\system32\\windowspowershell\\v1.0\\powershell.exe
