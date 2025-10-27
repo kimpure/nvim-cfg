@@ -1,5 +1,6 @@
 local api = require("nvim-tree.api")
 local nvim_tree = require("nvim-tree")
+local trash_file = require("trash").setup().trash_file
 
 --- @param bufnr integer
 local function on_attach(bufnr)
@@ -73,7 +74,7 @@ local function on_attach(bufnr)
 				return
 			end
 
-			utils.fs.trash_file(node.absolute_path)
+			trash_file(node.absolute_path)
 
 			api.tree.reload()
 		else

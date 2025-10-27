@@ -37,16 +37,16 @@ local fs = {}
 fs.path_prefix = is_windows and "\\" or "/"
 
 --- Remove directory
---- @param p string target file path
-function fs.remove_file(p)
+--- @param path string target file path
+function fs.remove_file(path)
 	if is_windows then
-        if fn.isdirectory(p) == 1 then
-            fn.system({ "cmd", "/c", "rmdir", "/s", "/q", p })
+        if fn.isdirectory(path) == 1 then
+            fn.system({ "cmd", "/c", "rmdir", "/s", "/q", path })
         else
-            fn.system({ "cmd", "/c", "del", "/f", "/q", p })
+            fn.system({ "cmd", "/c", "del", "/f", "/q", path })
         end
 	else
-		local handle = uv.fs_scandir(p)
+		local handle = uv.fs_scandir(path)
 
 		if handle then
 			while true do
@@ -56,7 +56,7 @@ function fs.remove_file(p)
 					break
 				end
 
-				local full = p .. fs.path_prefix .. name
+				local full = path .. fs.path_prefix .. name
 
 				if type == "directory" then
 					fs.remove_file(full)
@@ -66,112 +66,7 @@ function fs.remove_file(p)
 			end
 		end
 
-		uv.fs_rmdir(p)
-	end
-end
-
-if is_windows then
-	ffi.cdef([[
-    typedef struct _SHFILEOPSTRUCTW {
-        void* hwnd;
-        uint32_t wFunc;
-        const wchar_t* pFrom;
-        const wchar_t* pTo;
-        uint16_t fFlags;
-        int fAnyOperationsAborted;
-        void* hNameMappings;
-        const wchar_t* lpszProgressTitle;
-    } SHFILEOPSTRUCTW;
-
-    int SHFileOperationW(SHFILEOPSTRUCTW* lpFileOp);
-    ]])
-end
-
-local function utf8_to_utf16le(str)
-	local out = {}
-	local i = 1
-	local n = #str
-	while i <= n do
-		local c = byte(str, i)
-		local code
-		if c < 0x80 then
-			code = c
-			i = i + 1
-		elseif c < 0xE0 then
-			code = bor(lshift(band(c, 0x1F), 6), band(byte(str, i + 1), 0x3F))
-			i = i + 2
-		elseif c < 0xF0 then
-			code = bor(
-				lshift(band(c, 0x0F), 12),
-				lshift(band(byte(str, i + 1), 0x3F), 6),
-				band(byte(str, i + 2), 0x3F)
-			)
-			i = i + 3
-		else
-			code = bor(
-				lshift(band(c, 0x07), 18),
-				lshift(band(byte(str, i + 1), 0x3F), 12),
-				lshift(band(byte(str, i + 2), 0x3F), 6),
-				band(byte(str, i + 3), 0x3F)
-			)
-			i = i + 4
-		end
-
-		if code <= 0xFFFF then
-			insert(out, char(band(code, 0xFF), rshift(code, 8)))
-		else
-			code = code - 0x10000
-			local high = 0xD800 + rshift(code, 10)
-			local low = 0xDC00 + band(code, 0x3FF)
-			insert(out, char(band(high, 0xFF), rshift(high, 8)))
-			insert(out, char(band(low, 0xFF), rshift(low, 8)))
-		end
-	end
-	insert(out, "\0\0")
-	return concat(out)
-end
-
---- Move to trash the file
---- @param p string target file path
-function fs.trash_file(p)
-	if is_windows then
-		if fn.isdirectory(p) == 1 and not match(p, "[\\/]$") then
-			p = p .. "\\"
-		end
-
-		local pathw = utf8_to_utf16le(p)
-
-        --- @diagnostic disable
-		local fop = ffi.new("SHFILEOPSTRUCTW")
-
-		fop.wFunc = 3
-		fop.pFrom = ffi.cast("const wchar_t*", pathw)
-		fop.pTo = nil
-		fop.fFlags = 0x40 + 0x10
-		fop.hwnd = nil
-		fop.hNameMappings = nil
-		fop.lpszProgressTitle = nil
-		fAnyOperationsAborted = 0
-
-		shell32.SHFileOperationW(fop)
-	elseif is_mac then
-        local trash_name = fn.fnamemodify(p, ":t")
-        local trash_path = fn.expand("/.Trash")
-
-        if fn.isdirectory(trash_path) then
-            fn.rename(p, trash_path .. "/" .. trash_name)
-        else
-            vim.notify("Not found a trash path, path: " .. trash_path, vim.log.levels.WARN)
-        end
-    else
-        local trash_name = fn.fnamemodify(p, ":t")
-        local trash_path = fn.expand("/.local/share/Trash/files")
-
-        if fn.isdirectory(trash_path) then
-            fn.rename(p, trash_path .. "/" .. trash_name)
-        else
-            vim.notify("Not found a trash path, path: " .. trash_path, vim.log.levels.WARN)
-        end
+		uv.fs_rmdir(path)
 	end
 end
 
