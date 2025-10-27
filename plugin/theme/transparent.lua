@@ -1,6 +1,6 @@
 pack.add({
-    { 
-        src = "gtihub.com/kimpure/transparent.nvim", 
-        boot = { "transparent" }, 
-    },
+	{
+		src = "gtihub.com/kimpure/transparent.nvim",
+		boot = { "transparent" },
+	},
 })

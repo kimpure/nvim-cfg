@@ -74,5 +74,5 @@ cmp.setup.cmdline(":", {
 		{ name = "path" },
 	}, {
 		{ name = "cmdline" },
-	})
+	}),
 })

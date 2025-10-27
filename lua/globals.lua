@@ -10,4 +10,3 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.is_windows = utils.has("win32") or utils.has("win64")
 vim.g.is_linux = utils.has("unix") or utils.has("macunix")
 vim.g.is_mac = utils.has("macunix")
-

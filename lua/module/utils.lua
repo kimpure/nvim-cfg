@@ -40,11 +40,11 @@ fs.path_prefix = is_windows and "\\" or "/"
 --- @param path string target file path
 function fs.remove_file(path)
 	if is_windows then
-        if fn.isdirectory(path) == 1 then
-            fn.system({ "cmd", "/c", "rmdir", "/s", "/q", path })
-        else
-            fn.system({ "cmd", "/c", "del", "/f", "/q", path })
-        end
+		if fn.isdirectory(path) == 1 then
+			fn.system({ "cmd", "/c", "rmdir", "/s", "/q", path })
+		else
+			fn.system({ "cmd", "/c", "del", "/f", "/q", path })
+		end
 	else
 		local handle = uv.fs_scandir(path)
 
