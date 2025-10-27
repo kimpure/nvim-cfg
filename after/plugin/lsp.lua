@@ -106,7 +106,7 @@ for server_name, lsp_executable in pairs(lsp_servers) do
 	else
 		vim.lsp.start({
 			name = server_name,
-			cmd = { pkg:get_install_path() .. "/bin/" .. lsp_executable },
+			cmd = { pkg:get_install_handle():get() .. "/bin/" .. lsp_executable },
 			root_dir = vim.fn.getcwd(),
 		})
 	end
