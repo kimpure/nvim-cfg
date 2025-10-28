@@ -56,9 +56,7 @@ cmp.setup({
 			border = "none",
 		}),
 	},
-	view = {
-		entries = "custom",
-	},
+    view = { entries = "custom" },
 })
 
 cmp.setup.cmdline("/", {

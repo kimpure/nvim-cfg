@@ -1,6 +1,19 @@
+local lsp_servers = {
+	"clangd",
+	"lua_ls",
+	"rust_analyzer",
+	"vimls",
+	"luau_lsp",
+}
+
 require("mason").setup()
+require("mason-lspconfig").setup({
+	ensure_installed = lsp_servers,
+	automatic_installation = true,
+})
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 capabilities.textDocument.foldingRange = {
 	dynamicRegistration = false,
 	lineFoldingOnly = true,
@@ -13,7 +26,7 @@ capabilities.workspace.didChangeWatchedFiles = {
 vim.lsp.config("*", {
 	capabilities = capabilities,
 	flags = {
-		debounce_text_changes = 500,
+		debounce_text_changes = 200,
 	},
 })
 
@@ -80,34 +93,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	nested = true,
 })
 
-local lsp_servers = {
-	clangd = "clangd",
-	luau_lsp = "luau-lsp",
-	lua_ls = "lua-language-server",
-	vimls = "vim-language-server",
-	rust_analyzer = "rust-analyzer",
-}
+local function lsp_attach()
+    for i = 1, #lsp_servers do
+        local server_name = lsp_servers[i]
 
-local registry = require("mason-registry")
+        vim.lsp.config(server_name, {
+            capabilities = capabilities,
+            flags = { debounce_text_changes = 300 },
+        })
 
-for server_name, lsp_executable in pairs(lsp_servers) do
-	local success, pkg = pcall(registry.get_package, lsp_executable)
-
-	if success then
-		if not pkg:is_installed() then
-			pkg:install()
-		end
-	else
-		vim.notify("LSP package not found: " .. lsp_executable, vim.log.levels.WARN)
-	end
-
-	if vim.lsp.enable then
-		vim.lsp.enable(server_name)
-	else
-		vim.lsp.start({
-			name = server_name,
-			cmd = { pkg:get_install_handle():get() .. "/bin/" .. lsp_executable },
-			root_dir = vim.fn.getcwd(),
-		})
-	end
+        vim.lsp.enable(server_name)
+    end
 end
+
+lsp_attach()
+

@@ -4,7 +4,7 @@ pack.add({
 		boot = {
 			"satellite",
 			current_only = false,
-			winblend = 50,
+			winblend = 0,
 			handlers = {
 				marks = {
 					enable = false,

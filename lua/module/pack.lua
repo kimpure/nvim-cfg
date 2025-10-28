@@ -28,11 +28,12 @@ local function get_package(src, name, version)
 		insert(cmd, src)
 		insert(cmd, path)
 
-		vim.fn.system(cmd)
+		local sys = vim.fn.system(cmd)
 
 		if vim.v.shell_error ~= 0 then
-			vim.api.nvim_echo({ { "Failed to clone " .. name } }, true, {})
-			vim.fn.getchar()
+            vim.notify("Faild to clone " .. name, vim.log.levels.ERROR)
+            vim.notify("Error: " .. sys, vim.log.levels.ERROR)
+            vim.fn.getchar()
 		end
 	end
 

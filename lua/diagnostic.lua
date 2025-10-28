@@ -3,11 +3,17 @@ local api = vim.api
 
 diagnostic.config({
 	virtual_text = { current_line = true },
-	signs = true,
 	underline = true,
 	update_in_insert = true,
 	severity_sort = true,
-
+	signs = {
+		text = {
+			[diagnostic.severity.ERROR] = "E",
+			[diagnostic.severity.WARN] = "W",
+			[diagnostic.severity.INFO] = "I",
+			[diagnostic.severity.HINT] = "H",
+		},
+	},
 	float = {
 		source = true,
 		header = "Diagnostics:",

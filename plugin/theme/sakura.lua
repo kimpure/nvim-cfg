@@ -23,7 +23,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 		vim.api.nvim_set_hl(0, "GitSignsChangeInline", { reverse = true, bg = colors.change })
 		vim.api.nvim_set_hl(0, "GitSignsAddInline", { reverse = true, bg = colors.add })
 		vim.api.nvim_set_hl(0, "GitSignsDeleteInline", { reverse = true, bg = colors.delete })
-	end,
+    end,
 })
 
 pack.add({
