@@ -6,5 +6,5 @@ return {
 				version = "LuaJIT",
 			},
 		},
-	}
+	},
 }

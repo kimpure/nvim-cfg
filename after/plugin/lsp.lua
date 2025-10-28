@@ -94,17 +94,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 local function lsp_attach()
-    for i = 1, #lsp_servers do
-        local server_name = lsp_servers[i]
+	for i = 1, #lsp_servers do
+		local server_name = lsp_servers[i]
 
-        vim.lsp.config(server_name, {
-            capabilities = capabilities,
-            flags = { debounce_text_changes = 300 },
-        })
+		vim.lsp.config(server_name, {
+			capabilities = capabilities,
+			flags = { debounce_text_changes = 300 },
+		})
 
-        vim.lsp.enable(server_name)
-    end
+		vim.lsp.enable(server_name)
+	end
 end
 
 lsp_attach()
-

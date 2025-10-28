@@ -60,10 +60,10 @@ local function on_attach(bufnr)
 	end
 
 	local function trash()
-		local node = api.tree.get_node_under_cursor()
-		local lower = string.lower
-
 		if vim.g.is_windows then
+			local node = api.tree.get_node_under_cursor()
+			local lower = string.lower
+
 			if not node or not node.absolute_path then
 				return
 			end

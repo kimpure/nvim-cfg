@@ -31,9 +31,9 @@ local function get_package(src, name, version)
 		local sys = vim.fn.system(cmd)
 
 		if vim.v.shell_error ~= 0 then
-            vim.notify("Faild to clone " .. name, vim.log.levels.ERROR)
-            vim.notify("Error: " .. sys, vim.log.levels.ERROR)
-            vim.fn.getchar()
+			vim.notify("Faild to clone " .. name, vim.log.levels.ERROR)
+			vim.notify("Error: " .. sys, vim.log.levels.ERROR)
+			vim.fn.getchar()
 		end
 	end
 
