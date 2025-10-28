@@ -7,6 +7,15 @@ require("cmp_cmdline")
 
 cmp.setup({
 	preselect = cmp.PreselectMode.None,
+    performance = {
+        debounce = 0,
+        throttle = 0,
+        fetching_timeout = 100,
+        filtering_context_budget = 3,
+        confirm_resolve_timeout = 80,
+        async_budget = 1,
+        max_view_entries = 15,
+    },
 	mapping = cmp.mapping.preset.insert({
 		["<Down>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then

@@ -1,25 +1,6 @@
 local fn = vim.fn
 local uv = vim.uv or vim.loop
 
-local byte = string.byte
-local char = string.char
-local format = string.format
-local gsub = string.gsub
-local match = string.match
-
-local floor = math.floor
-
-local insert = table.insert
-local concat = table.concat
-
-local band = bit.band
-local bor = bit.bor
-local lshift = bit.lshift
-local rshift = bit.rshift
-
-local ffi = require("ffi")
-local shell32 = ffi.load("Shell32")
-
 --- @class Utils
 local utils = {}
 
@@ -30,7 +11,6 @@ function utils.has(feat)
 end
 
 local is_windows = utils.has("win32") or utils.has("win64")
-local is_mac = utils.has("macunix")
 
 --- @class Utils.FileSystem
 local fs = {}
