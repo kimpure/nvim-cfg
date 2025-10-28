@@ -1,4 +1,2 @@
 My neovim dotfiles
-
-<img width="1577" height="970" alt="image" src="https://github.com/user-attachments/assets/19128b4b-8a40-41a1-80fe-6f43ed359d49" />
-Simple Config!!
+<img width="1682" height="947" alt="image" src="https://github.com/user-attachments/assets/436d36e6-164d-4762-85bb-a965f55e3eb3" />
