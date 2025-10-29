@@ -25,21 +25,6 @@ diagnostic.config({
 	},
 })
 
-local set_qflist = function(buf_num, severity)
-	local diagnostics = nil
-	diagnostics = diagnostic.get(buf_num, { severity = severity })
-
-	local qf_items = diagnostic.toqflist(diagnostics)
-	vim.fn.setqflist({}, " ", { title = "Diagnostics", items = qf_items })
-
-	vim.cmd([[copen]])
-end
-
-vim.keymap.set("n", "<space>qw", diagnostic.setqflist, { desc = "put window diagnostics to qf" })
-vim.keymap.set("n", "<space>qb", function()
-	set_qflist(0)
-end, { desc = "put buffer diagnostics to qf" })
-
 api.nvim_create_autocmd("CursorHold", {
 	pattern = "*",
 	callback = function()
