@@ -5,7 +5,7 @@ return {
 	filetypes = { "lua" },
 	settings = {
 		Lua = {
-            codeLens = { enable = true },
+			codeLens = { enable = true },
 			runtime = {
 				version = "LuaJIT",
 			},
