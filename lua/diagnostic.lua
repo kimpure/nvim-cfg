@@ -6,7 +6,8 @@ diagnostic.config({
 	underline = true,
 	update_in_insert = true,
 	severity_sort = true,
-	signs = {
+    severity = { min = diagnostic.severity.WARN },
+    signs = {
 		text = {
 			[diagnostic.severity.ERROR] = "E",
 			[diagnostic.severity.WARN] = "W",
