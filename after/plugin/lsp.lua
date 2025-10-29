@@ -106,4 +106,8 @@ local function lsp_attach()
 	end
 end
 
-lsp_attach()
+vim.api.nvim_create_autocmd("VimEnter", {
+	callback = function()
+		lsp_attach()
+	end,
+})

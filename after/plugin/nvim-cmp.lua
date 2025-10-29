@@ -66,8 +66,8 @@ cmp.setup({
 		}),
 	},
 	view = {
-        entries = "custom",
-    },
+		entries = "custom",
+	},
 })
 
 cmp.setup.cmdline("/", {
