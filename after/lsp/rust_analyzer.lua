@@ -10,7 +10,10 @@ return {
 	filetypes = { "rust", "rs" },
 	settings = {
 		["rust-analyzer"] = {
-			check = { command = "clippy" },
+			check = {
+				command = "clippy",
+				onSave = false,
+			},
 		},
 	},
 }

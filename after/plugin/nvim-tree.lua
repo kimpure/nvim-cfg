@@ -37,23 +37,35 @@ local function on_attach(bufnr)
 	end
 
 	local function remove()
-		local node = api.tree.get_node_under_cursor()
-		local lower = string.lower
-
 		if vim.g.is_windows then
+			local node = api.tree.get_node_under_cursor()
+			local lower = string.lower
+
 			if not node or not node.absolute_path then
 				return
 			end
 
-			local confirm = vim.fn.input("Remove " .. node.name .. "? y/N: ")
+			if nvim_tree.config.ui.confirm.default_yes then
+				local confirm = vim.fn.input("Remove " .. node.name .. "? Y/n: ")
 
-			if lower(confirm) ~= "y" then
-				return
+				if confirm ~= "" and lower(confirm) ~= "y" then
+					return
+				end
+
+				utils.fs.remove_file(node.absolute_path)
+
+				api.tree.reload()
+			else
+				local confirm = vim.fn.input("Remove " .. node.name .. "? y/N: ")
+
+				if lower(confirm) ~= "y" then
+					return
+				end
+
+				utils.fs.remove_file(node.absolute_path)
+
+				api.tree.reload()
 			end
-
-			utils.fs.remove_file(node.absolute_path)
-
-			api.tree.reload()
 		else
 			api.fs.remove()
 		end
@@ -67,13 +79,25 @@ local function on_attach(bufnr)
 			return
 		end
 
-		local confirm = vim.fn.input("Trash " .. node.name .. "? y/N: ")
+		if nvim_tree.config.ui.confirm.default_yes then
+			local confirm = vim.fn.input("Remove " .. node.name .. "? Y/n: ")
 
-		if lower(confirm) ~= "y" then
-			return
+			if confirm ~= "" and lower(confirm) ~= "y" then
+				return
+			end
+
+			trash_file(node.absolute_path)
+			api.tree.reload()
+		else
+			local confirm = vim.fn.input("Remove " .. node.name .. "? y/N: ")
+
+			if lower(confirm) ~= "y" then
+				return
+			end
+
+			trash_file(node.absolute_path)
+			api.tree.reload()
 		end
-
-		trash_file(node.absolute_path)
 	end
 
 	vim.keymap.set("n", ".", root_to_node, opts("CD"))
