@@ -2,8 +2,8 @@ local diagnostic = vim.diagnostic
 local api = vim.api
 
 diagnostic.config({
-	virtual_text = { current_line = true },
-	underline = true,
+	virtual_text = true,
+    underline = true,
 	update_in_insert = true,
 	severity_sort = true,
 	severity = { min = diagnostic.severity.WARN },
