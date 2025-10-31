@@ -1,5 +1,4 @@
 local fn = vim.fn
-local uv = vim.uv or vim.loop
 
 --- @class Utils
 local utils = {}
@@ -18,36 +17,17 @@ fs.path_prefix = is_windows and "\\" or "/"
 
 --- Remove directory
 --- @param path string target file path
-function fs.remove_file(path)
-	if is_windows then
+--- @param using_windows? boolean using windows remove option (defulat: false)
+function fs.remove_file(path, using_windows)
+	if is_windows and using_windows then
 		if fn.isdirectory(path) == 1 then
 			fn.system({ "cmd", "/c", "rmdir", "/s", "/q", path })
 		else
 			fn.system({ "cmd", "/c", "del", "/f", "/q", path })
 		end
 	else
-		local handle = uv.fs_scandir(path)
-
-		if handle then
-			while true do
-				local name, type = uv.fs_scandir_next(handle)
-
-				if not name then
-					break
-				end
-
-				local full = path .. fs.path_prefix .. name
-
-				if type == "directory" then
-					fs.remove_file(full)
-				else
-					uv.fs_unlink(full)
-				end
-			end
-		end
-
-		uv.fs_rmdir(path)
-	end
+		fn.delete(path, "rf")
+    end
 end
 
 --- @class Utils.FileSystem

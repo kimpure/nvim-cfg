@@ -80,7 +80,7 @@ local function on_attach(bufnr)
 		end
 
 		if nvim_tree.config.ui.confirm.default_yes then
-			local confirm = vim.fn.input("Remove " .. node.name .. "? Y/n: ")
+			local confirm = vim.fn.input("Trash " .. node.name .. "? Y/n: ")
 
 			if confirm ~= "" and lower(confirm) ~= "y" then
 				return
@@ -89,7 +89,7 @@ local function on_attach(bufnr)
 			trash_file(node.absolute_path)
 			api.tree.reload()
 		else
-			local confirm = vim.fn.input("Remove " .. node.name .. "? y/N: ")
+			local confirm = vim.fn.input("Trash " .. node.name .. "? y/N: ")
 
 			if lower(confirm) ~= "y" then
 				return

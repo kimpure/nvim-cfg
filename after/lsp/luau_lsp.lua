@@ -22,7 +22,7 @@ if rojo_project() then
 		sourcemap = {
 			enabled = true,
 			autogenerate = true,
-			rojo_project_file = "dev.project.json",
+			rojo_project_file = "default.project.json",
 			sourcemap_file = "sourcemap.json",
 		},
 		types = {
