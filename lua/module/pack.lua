@@ -17,7 +17,7 @@ local function get_package(src, name, version)
 	name = name or match(src, "^.+/(.+)$")
 	local path = opt_path .. name
 
-	if vim.fn.empty(vim.fn.glob(path)) > 0 then
+    if vim.fn.isdirectory(path) < 1 then
 		local cmd = { "git", "clone", "--depth=1" }
 
 		if version then

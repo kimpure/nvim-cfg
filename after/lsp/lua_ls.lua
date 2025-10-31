@@ -10,7 +10,12 @@ return {
 				version = "LuaJIT",
 			},
 			telemetry = { enable = false },
-			workspace = { checkThirdParty = false },
+			workspace = {
+				checkThirdParty = false,
+			},
+            flags = {
+				debounce_text_changes = 0,
+			},
 		},
 	},
 }
