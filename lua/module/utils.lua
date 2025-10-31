@@ -27,7 +27,7 @@ function fs.remove_file(path, using_windows)
 		end
 	else
 		fn.delete(path, "rf")
-    end
+	end
 end
 
 --- @class Utils.FileSystem

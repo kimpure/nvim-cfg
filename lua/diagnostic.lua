@@ -3,7 +3,7 @@ local api = vim.api
 
 diagnostic.config({
 	virtual_text = true,
-    underline = true,
+	underline = true,
 	update_in_insert = true,
 	severity_sort = true,
 	severity = { min = diagnostic.severity.WARN },
