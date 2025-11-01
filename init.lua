@@ -1,8 +1,8 @@
 vim.loader.enable()
 
-require("lua.globals")
-require("lua.mappings")
-require("lua.diagnostic")
-require("lua.package")
+require("globals")
+require("mappings")
+require("diagnostic")
+require("packages")
 
 vim.cmd("source " .. vim.fs.joinpath(vim.fn.stdpath("config"), "vim/options.vim"))
