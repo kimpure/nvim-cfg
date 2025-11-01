@@ -112,6 +112,12 @@ pack.add({
 			"transparent",
 		},
 	},
+    {
+        src = "github.com/kimpure/gitcolors.nvim",
+        boot = {
+            "gitcolors",
+        },
+    },
 	{ src = "github.com/rktjmp/lush.nvim" },
 	{
 		src = "github.com/kimpure/sakura.nvim",
