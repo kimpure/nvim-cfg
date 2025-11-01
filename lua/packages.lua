@@ -102,6 +102,18 @@ pack.add({
 					color = "#007ABF",
 					name = "Luaurc",
 				},
+                ["LICENCE"] = {
+                    icon = "󰄤",
+                    color = "#ec6237",
+                    cterm_color = "220",
+                    name = "LICENSE",
+                },
+                ["LICENCE.md"] = {
+                    icon = "󰄤",
+                    color = "#ec6237",
+                    cterm_color = "220",
+                    name = "LICENSE",
+                },
 			},
 		},
 	},
