@@ -28,6 +28,13 @@ pack.add({
 	{ src = "github.com/nvim-tree/nvim-tree.lua" },
 
 	{
+		src = "github.com/kimpure/cmdhistory.nvim",
+		boot = {
+			"cmdhistory",
+		},
+	},
+
+	{
 		src = "github.com/lewis6991/gitsigns.nvim",
 		boot = {
 			"gitsigns",
@@ -102,18 +109,18 @@ pack.add({
 					color = "#007ABF",
 					name = "Luaurc",
 				},
-                ["LICENCE"] = {
-                    icon = "󰄤",
-                    color = "#ec6237",
-                    cterm_color = "220",
-                    name = "LICENSE",
-                },
-                ["LICENCE.md"] = {
-                    icon = "󰄤",
-                    color = "#ec6237",
-                    cterm_color = "220",
-                    name = "LICENSE",
-                },
+				["LICENCE"] = {
+					icon = "󰄤",
+					color = "#ec6237",
+					cterm_color = "220",
+					name = "LICENSE",
+				},
+				["LICENCE.md"] = {
+					icon = "󰄤",
+					color = "#ec6237",
+					cterm_color = "220",
+					name = "LICENSE",
+				},
 			},
 		},
 	},
@@ -124,17 +131,17 @@ pack.add({
 			"transparent",
 		},
 	},
-    {
-        src = "github.com/kimpure/gitcolors.nvim",
-        boot = {
-            "gitcolors",
-        },
-    },
+	{
+		src = "github.com/kimpure/gitcolors.nvim",
+		boot = {
+			"gitcolors",
+		},
+	},
 	{ src = "github.com/rktjmp/lush.nvim" },
 	{
 		src = "github.com/kimpure/sakura.nvim",
 		boot = function()
-            vim.cmd.colorscheme("sakura")
+			vim.cmd.colorscheme("sakura")
 		end,
 	},
 })
